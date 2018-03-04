@@ -20,6 +20,9 @@ public class Agenda {
     
     public static void main(String[] args) {
         // TODO code application logic here
+        /*SelectContact callP=new SelectContact();
+        callP.Contactos(null);*/
+        
         Menu callMenu = new Menu();
         Agenda callLogin = new Agenda();     
         callMenu.header();
@@ -27,6 +30,7 @@ public class Agenda {
         callLogin.Login();   
         
     }
+   
     public void Login(){
         String correo;
         Menu callMenu = new Menu();
@@ -42,7 +46,7 @@ public class Agenda {
            Registro callregistro =new Registro();
            callregistro.registroUser();
         }
-        System.out.println("______________________________\n");
+        System.out.println("____________________________________________________________________________________________\n");
         ValidarMail callValidator = new ValidarMail();
         callValidator.validar(correo);
         callRegis.dRegistro();

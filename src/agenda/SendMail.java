@@ -18,7 +18,7 @@ import javax.mail.internet.MimeMessage;
  */
 public class SendMail {
     
-    public void enviar(String correo,String asunto,String descripcion){
+    public void enviar(String email, String arrayContact[],String asunto,String descripcion){
     Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.socketFactory.port", "465");
@@ -36,20 +36,29 @@ public class SendMail {
 			});
 
 		try {
-
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(correo));
-			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse(correo));
-			message.setSubject(asunto);
-			message.setText(descripcion);
-
-			Transport.send(message);
-
-			System.out.println("El mensaje fue enviado con exito");
+                        for (String arrayContact1 : arrayContact) {
+                            Message message = new MimeMessage(session);
+                            message.setFrom(new InternetAddress(arrayContact1));
+                            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(arrayContact1));
+                            message.setSubject(asunto);
+                            message.setText(descripcion);
+                            Transport.send(message);
+                        }
+                        System.out.println("____________________________________________________________________________________________");
+			System.out.println("\n-----------------------------TUS CONTACTOS YA SABEN DE TU EVENTO----------------------------");
+                        System.out.println("____________________________________________________________________________________________");                        
+//Regreso a la clase perfil.
+                        System.out.println();
+                        Perfil callPerfil=new Perfil();
+                        callPerfil.ShowPerfilUser(email);
 
 		} catch (MessagingException e) {
-			System.out.println("El mensaje no fue enviado");
+                        System.out.println("____________________________________________________________________________________________");
+			System.out.println("\n----------------------El mensaje no fue enviado, verifica tus contactos---------------------");
+                        System.out.println("____________________________________________________________________________________________");
+                        System.out.println();
+                        SelectContact callP=new SelectContact();
+                        callP.Contactos(email);
 		}
     
     }

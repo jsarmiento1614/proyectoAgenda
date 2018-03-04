@@ -31,7 +31,8 @@ public class Querys {
            
             while (rs.next()) {         
                 if(rs.getString("email").equals(email)){
-                  System.out.println("correo encontrado...\n------------------------------" ); 
+                  System.out.println("-----------------------------correo encontrado Satisfactoriamente---------------------------");
+                  System.out.println("____________________________________________________________________________________________");
                   Perfil callPerfil =new Perfil();
                   callPerfil.ShowPerfilUser(email);
                   break;
@@ -192,10 +193,11 @@ public class Querys {
             preStmt.setString(7, inicio);
             preStmt.setString(8, Fin);
             preStmt.execute();
-            System.out.println("------------------------------\n"
-                    + "Tu Evento se ha registrado Correctamente...\n"
-                    + "Desea Notificar este evento a tus contactos (S/N).\n"
-                    + "------------------------------");
+            System.out.println("____________________________________________________________________________________________"); 
+            System.out.println("\n--------------------------Tu Evento se ha registrado Correctamente--------------------------");
+            System.out.println("\t\t\tDesea Notificar este evento a tus contactos (S/N)");
+            System.out.println("____________________________________________________________________________________________");
+            
            //String IdUsers= Integer.toString(IdUse);
             InsertEvent callInsertEvent=new InsertEvent();
             callInsertEvent.NotificarContact(email);
@@ -239,7 +241,7 @@ public class Querys {
             PreparedStatement preStmt  = con.prepareStatement(query);
             preStmt.setString(1, IdUser);
             rs = preStmt.executeQuery();
-            tabla.append("----------------------------------------------------------------------\n");
+            System.out.println("____________________________________________________________________________________________");
             tabla.append("Fecha|\t\tInicio|\t\tFin|\t\tNombre del Evento|\n");
             String idUser="";
             while (rs.next()){
@@ -247,10 +249,9 @@ public class Querys {
                 tabla.append(rs.getString(7)).append("\t");
                 tabla.append(rs.getString(8)).append("\t");
                 tabla.append(rs.getString(4)).append("\n");
-                
-                //idUser=rs.getString(1);
             }
-            System.out.println(tabla.toString());
+            System.out.print(tabla.toString());
+            System.out.println("____________________________________________________________________________________________");
             Perfil callPerfil=new Perfil();
             callPerfil.ShowPerfilUser(email);
             return tabla.toString();   

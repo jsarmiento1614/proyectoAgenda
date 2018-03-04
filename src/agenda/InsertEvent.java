@@ -27,25 +27,32 @@ public class InsertEvent {
          System.out.println("Ubicación del Eventon:");
          System.out.print(" ");
          Ubicacion=teclado.nextLine();
-         System.out.println("Inicio del Evento:\t\t\t\t\t\t\tFormato> 00:00:00");
+         System.out.println("Inicio del Evento:\t\t\t\t\t\t\tFormato>   00:00:00");
          System.out.print(" ");
          inicio=teclado.nextLine();
-         System.out.println("Fin del Evento:\t\t\t\t\t\t\t\tFormato> 00:00:00");
+         System.out.println("Fin del Evento:\t\t\t\t\t\t\t\tFormato>   00:00:00");
          System.out.print(" ");
          Fin=teclado.nextLine();
          Querys.IsertEvento(IdUser,email,fecha, tEvento, dEvento, Ubicacion, inicio, Fin);
     }
     public void NotificarContact(String email){
+     int salir=0;
+     do{
        System.out.print(" ");
        String resp=teclado.nextLine();
        if("S".equalsIgnoreCase(resp)){
-          System.out.println("llamar Clase enviar correo"); 
-       }else{
+          SelectContact callSelectContact = new SelectContact();
+          callSelectContact.Contactos(email);
+       }else if("N".equalsIgnoreCase(resp)){
           //Regreso a la clase perfil.
           System.out.println();
           Perfil callPerfil=new Perfil();
           callPerfil.ShowPerfilUser(email);
+       }else{
+           System.out.println("Verifica tu respuesta");
+           System.out.println("*****Vuelve a Introducir******");
        }
+     }while(salir!=1);
     }
 
    

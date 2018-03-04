@@ -20,7 +20,7 @@ public class Menu {
        minutos = calendario.get(Calendar.MINUTE);
        segundos = calendario.get(Calendar.SECOND);
        
-       System.out.println("********************************************************************************************");
+       System.out.println("********************************************************************************************"); 
        System.out.println("*                               AGENDA ELECTRÓNICA JSARMIENTO©                             *");    
        System.out.println("*******************************                             ********************************");
        System.out.println("_______________________________________"+ hora + ":" + minutos + ":" + segundos + ""

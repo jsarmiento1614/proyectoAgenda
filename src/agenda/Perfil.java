@@ -22,13 +22,14 @@ public class Perfil {
     }
     public void mainPerfil(String IdUser, String email){
         System.out.println("Menú de control de Eventos");
-        System.out.println("1) Crear evento\n2) Ver eventos.\nIngrese número de opción: ");
+        System.out.println("1) Crear evento\n2) Ver eventos.\nIngrese número de opción:\t\t\t\t\t    Ingrese (S) para Salir");       
         System.out.print(" ");
         int opt=teclado.nextInt();
         switch (opt) {
             case 1:
-                System.out.println("-------------------------------------");
-                System.out.println("Ingrese la informacion de su evento:");
+                System.out.println("____________________________________________________________________________________________"); 
+                System.out.println("\n-----------------------------Ingrese la informacion de su evento----------------------------");
+                System.out.println("____________________________________________________________________________________________"); 
                 InsertEvent callInsertEvent=new InsertEvent();
                 callInsertEvent.InsertEvent(IdUser,email);
                 break;
@@ -42,10 +43,12 @@ public class Perfil {
         } 
     }
     public void MenuEventos(String IdUser, String email){
-        System.out.println("-------------------------------------");
-        System.out.println("Selecciona la forma de ver tus Eventos.");
+        System.out.println("____________________________________________________________________________________________");
+        System.out.println("\n---------------------------Selecciona la forma de ver tus Eventos---------------------------");
+        System.out.println("____________________________________________________________________________________________");
         System.out.println("1) Primeros 3 eventos más cercanos de la fecha.\n"
-                        + "2) Eventos Diarios.\n3) Eventos Mensuales.");
+                        + "2) Eventos Diarios.\n3) Eventos Mensuales.\t\t\t\t\t\t   Ingrese (C) para Cancelar");
+        System.out.print(" ");
         int opt=teclado.nextInt();
         if(opt==1){
             Querys.callFirsTreeEvents(IdUser, email);
