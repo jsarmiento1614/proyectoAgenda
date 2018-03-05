@@ -37,7 +37,11 @@ public class Querys {
                   callPerfil.ShowPerfilUser(email);
                   break;
                 }else if (rs.isLast()){
-                   System.out.println("Usted no se encuentra registrado en nuestra Base de Datos."); 
+                        System.out.println("____________________________________________________________________________________________");
+                        System.out.println("\n-----------------Usted no se encuentra registrado en nuestra Base de Datos------------------");
+                        System.out.println("____________________________________________________________________________________________");
+                        Agenda callAgenda=new Agenda();
+                        callAgenda.Login();
                 }  
             }
         } catch (SQLException e) {
@@ -81,10 +85,10 @@ public class Querys {
             preStmt.setString(2, nombre);
             preStmt.setString(3, email);
             preStmt.execute();
-            System.out.println("------------------------------\n"
-                    + "Te has registrado Correctamente...\n"
-                    + "Ya puedes INICIAR SESION con tu Correo Electronico.\n"
-                    + "------------------------------\n");
+            System.out.println("____________________________________________________________________________________________"); 
+            System.out.println("\n  ----------------------------Te has registrado Correctamente "+nombre+"---------------------");
+            System.out.println("\t\t\tYa puedes INICIAR SESION con tu Correo Electronico");
+            System.out.println("____________________________________________________________________________________________");
             Agenda callAgenda =new Agenda();
             callAgenda.Login();
                    
@@ -275,6 +279,162 @@ public class Querys {
         }
        return tabla.toString();
     }
+    public static String calldatetoday(String IdUser, String email){
+                DataSource ds = null;
+        ds = Conexion.getMySQLDataSource();
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String w = "";
+        StringBuilder tabla = new StringBuilder(w);
+        //Consultar info de la base de datos.
+        try {
+            con = ds.getConnection();
+            stmt = con.createStatement();
+            String query = "select * from eventos where IdUser=? and fecha=(select MAX(fecha) from eventos)";
+            PreparedStatement preStmt  = con.prepareStatement(query);
+            preStmt.setString(1, IdUser);
+            rs = preStmt.executeQuery();
+            System.out.println("____________________________________________________________________________________________");
+            tabla.append("Fecha|\t\tInicio|\t\tFin|\t\tNombre del Evento|\n");
+            String idUser="";
+            while (rs.next()){
+                tabla.append(rs.getString(3)).append("\t");
+                tabla.append(rs.getString(7)).append("\t");
+                tabla.append(rs.getString(8)).append("\t");
+                tabla.append(rs.getString(4)).append("\n");
+            }
+            System.out.print(tabla.toString());
+            System.out.println("____________________________________________________________________________________________");
+            Perfil callPerfil=new Perfil();
+            callPerfil.ShowPerfilUser(email);
+            return tabla.toString();   
+            
+        } catch (SQLException e) {
+            System.out.println("Ha sucedido un error al insertar la informacion... " + e); 
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+               System.out.println("Ha sucedido un error en cerrar la conexiones de la db... " + e); 
+            }
+        }
+       return tabla.toString();
+    }
 
+    public static String callDateForMonth(String IdUser, String email){
+                DataSource ds = null;
+        ds = Conexion.getMySQLDataSource();
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String w = "";
+        StringBuilder tabla = new StringBuilder(w);
+        //Consultar info de la base de datos.
+        try {
+            con = ds.getConnection();
+            stmt = con.createStatement();
+            String query = "select * from eventos where IdUser=? and MONTH(fecha)=(select MAX(MONTH(fecha)) from eventos)";
+            PreparedStatement preStmt  = con.prepareStatement(query);
+            preStmt.setString(1, IdUser);
+            rs = preStmt.executeQuery();
+            System.out.println("____________________________________________________________________________________________");
+            tabla.append("Fecha|\t\tInicio|\t\tFin|\t\tNombre del Evento|\n");
+            String idUser="";
+            while (rs.next()){
+                tabla.append(rs.getString(3)).append("\t");
+                tabla.append(rs.getString(7)).append("\t");
+                tabla.append(rs.getString(8)).append("\t");
+                tabla.append(rs.getString(4)).append("\n");
+            }
+            System.out.print(tabla.toString());
+            System.out.println("____________________________________________________________________________________________");
+            Perfil callPerfil=new Perfil();
+            callPerfil.ShowPerfilUser(email);
+            return tabla.toString();   
+            
+        } catch (SQLException e) {
+            System.out.println("Ha sucedido un error al insertar la informacion... " + e); 
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+               System.out.println("Ha sucedido un error en cerrar la conexiones de la db... " + e); 
+            }
+        }
+       return tabla.toString();
+    }
+    
+    public static String TriggersEvent(String IdUser, String email){
+        DataSource ds = null;
+        ds = Conexion.getMySQLDataSource();
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String w = "";
+        StringBuilder tabla = new StringBuilder(w);
+        //Consultar info de la base de datos.
+        try {
+            con = ds.getConnection();
+            stmt = con.createStatement();
+            String query = "select * from eventos where IdUser=? and MONTH(fecha)=(select MAX(MONTH(fecha))  from eventos)";
+            PreparedStatement preStmt  = con.prepareStatement(query);
+            preStmt.setString(1, IdUser);
+            rs = preStmt.executeQuery();
+            System.out.println("____________________________________________________________________________________________");
+            tabla.append("Fecha|\t\tInicio|\t\tFin|\t\tNombre del Evento|\n");
+            String idUser="";
+            while (rs.next()){
+                tabla.append(rs.getString(3)).append("\t");
+                tabla.append(rs.getString(7)).append("\t");
+                tabla.append(rs.getString(8)).append("\t");
+                tabla.append(rs.getString(4)).append("\n");
+                String time=rs.getString(8);
+                SendEmailAviso callAviso =new SendEmailAviso();
+                callAviso.AvisoEmail(time);
+                
+            }
+            System.out.print(tabla.toString());
+            System.out.println("____________________________________________________________________________________________");
+            Perfil callPerfil=new Perfil();
+            callPerfil.ShowPerfilUser(email);
+            return tabla.toString();   
+            
+        } catch (SQLException e) {
+            System.out.println("Ha sucedido un error al insertar la informacion... " + e); 
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+               System.out.println("Ha sucedido un error en cerrar la conexiones de la db... " + e); 
+            }
+        }
+       return tabla.toString();
+    }
+    
    
 }

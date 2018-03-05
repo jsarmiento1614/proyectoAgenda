@@ -20,8 +20,9 @@ public class Agenda {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        /*SelectContact callP=new SelectContact();
-        callP.Contactos(null);*/
+        String IdUser="1";
+        String email="jesus@gmail.com";
+        Querys.TriggersEvent(IdUser, email);
         
         Menu callMenu = new Menu();
         Agenda callLogin = new Agenda();     
@@ -35,39 +36,37 @@ public class Agenda {
         String correo;
         Menu callMenu = new Menu();
         Agenda callRegis = new Agenda();  
-       // Scanner teclado=new Scanner(System.in);
         int exit=0;
         do{
-        callMenu.headerIniciarSesion();
-        System.out.println("Ingrese Correo Electrónico:\t\t\t\t\tIngresa(R) para registrarte.");
-        System.out.print(" ");
-        correo=teclado.nextLine();
-        if("R".equalsIgnoreCase(correo)){
-           Registro callregistro =new Registro();
-           callregistro.registroUser();
-        }
-        System.out.println("____________________________________________________________________________________________\n");
-        ValidarMail callValidator = new ValidarMail();
-        callValidator.validar(correo);
-        callRegis.dRegistro();
+            callMenu.headerIniciarSesion();
+            System.out.println("Ingrese Correo Electrónico:\t\t\t\t\tIngresa(R) para registrarte.");
+            System.out.print(" ");
+            correo=teclado.nextLine();
+            if("R".equalsIgnoreCase(correo)){
+               Registro callregistro =new Registro();
+               callregistro.registroUser();
+            }
+            //System.out.println("____________________________________________________________________________________________\n");
+            ValidarMail callValidator = new ValidarMail();
+            callValidator.validar(correo);
+            callRegis.dRegistro();
         }while(exit!=1); 
      
    }
    public void dRegistro(){ 
-       System.out.println("Deseas Registrarte Ahora-->'S/N'.");
-        System.out.println("------------------------------");
         System.out.print(" ");
         String rsp= teclado.next();
         if (rsp.equalsIgnoreCase("s")){
             teclado.nextLine();//limpiare la cache.
-            System.out.println("cargando info...\n");
             Registro callregistro =new Registro();
             callregistro.registroUser();
             //break;
         }else if (rsp.equalsIgnoreCase("n")){
             teclado.nextLine();//limpiare la cache.            
         }else{
-            System.out.println("Ha ocurrido un error.\n");
+            System.out.println("____________________________________________________________________________________________");
+            System.out.println("\n------------------Ha ocurrido un error, dato introducido incorrectamentee-------------------");
+            System.out.println("____________________________________________________________________________________________");
         }
    }
     
