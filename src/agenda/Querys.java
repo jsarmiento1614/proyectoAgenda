@@ -31,7 +31,8 @@ public class Querys {
            
             while (rs.next()) {         
                 if(rs.getString("email").equals(email)){
-                  System.out.println("-----------------------------correo encontrado Satisfactoriamente---------------------------");
+                  System.out.println("____________________________________________________________________________________________");
+                  System.out.println("\n-----------------------------correo encontrado Satisfactoriamente---------------------------");
                   System.out.println("____________________________________________________________________________________________");
                   Perfil callPerfil =new Perfil();
                   callPerfil.ShowPerfilUser(email);
@@ -184,7 +185,7 @@ public class Querys {
             while (rs.next()) {
                 IdEvent= rs.getInt("IdEvent");
             }
-            String query = " insert into eventos (IdEvent,IdUser, fecha, Titulo,Detalles,Ubicacion,Inicio,Fin)"
+            String query = " insert into eventos (IdEvent,IdUser, fecha, Titulo,Detalles,Ubicacion,inicio,Fin)"
                     + "" + " values (?,?,?,?,?,?,?,?) ";
             PreparedStatement preStmt  = con.prepareStatement(query);
             IdEvent++;

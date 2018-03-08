@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `eventos` (
   
 	`IdUser` int(25) NOT NULL,
   
-	`Fecha` date NOT NULL,
+	`fecha` date NOT NULL,
   
 	`Titulo` varchar(50) NOT NULL,
   
@@ -14,9 +14,9 @@ CREATE TABLE IF NOT EXISTS `eventos` (
   
 	`Ubicación` varchar(50) NOT NULL,
   
-	`Inicio` date NOT NULL,
+	`Inicio` time NOT NULL,
   
-	`Fin` date NOT NULL,
+	`Fin` time NOT NULL,
   
 	PRIMARY KEY (`IdEvent`),
   
