@@ -47,7 +47,7 @@ public class SendMail {
                         System.out.println("____________________________________________________________________________________________");
 			System.out.println("\n-----------------------------TUS CONTACTOS YA SABEN DE TU EVENTO----------------------------");
                         System.out.println("____________________________________________________________________________________________");                        
-//Regreso a la clase perfil.
+                //Regreso a la clase perfil.
                         System.out.println();
                         Perfil callPerfil=new Perfil();
                         callPerfil.ShowPerfilUser(email);

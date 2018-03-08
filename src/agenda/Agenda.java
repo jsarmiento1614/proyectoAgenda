@@ -20,9 +20,9 @@ public class Agenda {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        String IdUser="1";
+       /* String IdUser="1";
         String email="jesus@gmail.com";
-        Querys.TriggersEvent(IdUser, email);
+        Querys.TriggersEvent(IdUser, email);*/
         
         Menu callMenu = new Menu();
         Agenda callLogin = new Agenda();     

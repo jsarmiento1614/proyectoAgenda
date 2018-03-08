@@ -29,15 +29,24 @@ public class Registro {
             System.out.println("Ingresa tu nombre:\t\t\t\t\t\t   Ingrese (C) para Cancelar"); 
             System.out.print(" ");
             nombre=teclado.nextLine();
-            if("C".equalsIgnoreCase(nombre)||"C".equalsIgnoreCase(email)){
+            if("C".equalsIgnoreCase(nombre)){
+                System.out.println("____________________________________________________________________________________________");
+                System.out.println("\n-----------------------------------SUSCRIPCION CANCELADA------------------------------------");
+                System.out.println("____________________________________________________________________________________________");
                Agenda callAgenda=new Agenda();
                callAgenda.Login();
             }
+            
             System.out.println("Ingresa tu correo:");
             System.out.print(" ");
             email=teclado.nextLine();
-            
-            
+            if("C".equalsIgnoreCase(email)){
+                System.out.println("____________________________________________________________________________________________");
+                System.out.println("\n-----------------------------------SUSCRIPCION CANCELADA------------------------------------");
+                System.out.println("____________________________________________________________________________________________");
+               Agenda callAgenda=new Agenda();
+               callAgenda.Login();
+            }
             callValidator.validarRegistro(email, nombre);
             callRegis.dRegistro();
         }while(exit!=1);
